@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react"
 import '../css/components/Vans.css'
+import { Link } from "react-router-dom";
+import { Van } from "../types/Van";
 
-type Van = {
-    id: string;
-    name: string;
-    price: number;
-    description: string;
-    imageUrl: string;
-    type: string;
-};
+
 
 export function Vans() {
 
@@ -22,21 +17,25 @@ export function Vans() {
     }, []);
 
     const vanElements = vans.map(van => (
+
         <section key={van.id} className="van-tile">
-            <img src={van.imageUrl} />
-            <section className="van-info">
-                <h3>{van.name}</h3>
-                <p>{van.price}<span>/day</span></p>
-            </section>
-            <i className={`van-type ${van.type} selected`}>{van.type}</i>
+            <Link to={`/vans/${van.id}`}>
+                <img src={van.imageUrl} />
+                <section className="van-info">
+                    <h3>{van.name}</h3>
+                    <p>{van.price}<span>/day</span></p>
+                </section>
+                <i className={`van-type ${van.type} selected`}>{van.type}</i>
+            </Link>
         </section>
+
     ));
 
     return (
-    <div className="van-list-container">
-        <h1>Explor our van options</h1>
-        <div className="van-list">
-            {vanElements};
-        </div>
-    </div>);
+        <div className="van-list-container">
+            <h1>Explor our van options</h1>
+            <div className="van-list">
+                {vanElements};
+            </div>
+        </div>);
 }

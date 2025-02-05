@@ -4,6 +4,7 @@ import { Root } from './components/Root'
 import { Home } from './components/Home'
 import { Vans } from './components/Vans'
 import './utils/server.js';
+import { VanDetail } from './components/VanDetail.js'
 
 function App() {
 
@@ -13,7 +14,9 @@ function App() {
         <Route path='/' element={<Root />}>
           <Route path='/' element={<Home/>}/>
           <Route path='/about' element={<About />} />
-          <Route path='/vans' element={<Vans />} />
+          <Route path='/vans' element={<Vans />}>
+          </Route>
+          <Route path='/vans/:id' element={<VanDetail/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,18 +1,12 @@
-.van-list-container {
+.van-detail-container {
     padding-inline: 23px
 }
 
-.van-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.van-detail {
+    display: flex;
+    flex-direction: column;
     justify-items: center;
-    gap: 34px;
-    margin-top: 57px;
-}
-
-.van-tile a {
-    color: #161616;
-    text-decoration: none;    
+    gap: 5px;
 }
 
 a {
@@ -20,19 +14,23 @@ a {
     color: black;
 }
 
-.van-tile img {
+img {
     max-width: 100%;
     border-radius: 5px;
 }
 
-.van-list-container button {
+.van-detail-container button {
     margin-right: 20px;
     cursor: pointer;
 }
 
+.van-detail > h2{
+    margin: 10px 0px;
+}
+
 .van-type {
     height: 34px;
-    padding: 6px 26px;
+    padding: 6px 20px;
     font-style: normal;
     font-weight: 500;
     border: none;
@@ -40,6 +38,10 @@ a {
     background-color: #FFEAD0;
     color: #4D4D4D;
     transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.van-price{
+    margin: 0;
 }
 
 .van-type:hover {
@@ -67,7 +69,7 @@ a {
 }
 
 .van-type.clear-filters {
-    margin-left: -20px;
+
     height: 34px;
     padding: 6px 26px;
     font-style: normal;
@@ -81,4 +83,16 @@ a {
 
 i[class*='van-type-'] {
     padding: 7px 14px;
+}
+
+.link-button{
+    place-self: center;
+    height: 35px;
+    width: 250px;
+    margin-bottom: 20px;
+    background-color: #FF8C38;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
 }
