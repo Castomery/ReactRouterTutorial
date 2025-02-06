@@ -6,3 +6,7 @@ export type Van = {
     imageUrl: string;
     type: string;
 };
+
+export type HostVans = Van & {
+    hostId: string;
+}

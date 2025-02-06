@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import { Van } from "../types/Van";
-import "../css/components/VanDetail.css";
+import { Van } from "../../types/Van";
+import "../../css/components/VanDetail.css";
 
 
 export function VanDetail(){

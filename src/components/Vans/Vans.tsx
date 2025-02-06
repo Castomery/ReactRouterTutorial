@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import '../css/components/Vans.css'
+import '../../css/components/Vans.css'
 import { Link } from "react-router-dom";
-import { Van } from "../types/Van";
+import { Van } from "../../types/Van";
 
 
 
@@ -10,7 +10,7 @@ export function Vans() {
     const [vans, setVans] = useState<Van[]>([]);
 
     useEffect(() => {
-        fetch("api/vans")
+        fetch("/api/vans")
             .then((res) => res.json())
             .then((data) => setVans(data.vans))
             .catch((err) => console.log("Error fetching vans:", err));
@@ -35,7 +35,7 @@ export function Vans() {
         <div className="van-list-container">
             <h1>Explor our van options</h1>
             <div className="van-list">
-                {vanElements};
+                {vanElements}
             </div>
         </div>);
 }

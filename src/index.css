@@ -4,8 +4,6 @@
 
 
 body, html{
-    width: 100%;
-    height: 100%;
     margin: 0;
     padding: 0;
     background-color: bisque;
@@ -18,6 +16,12 @@ body {
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+.site-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 
