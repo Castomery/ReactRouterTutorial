@@ -3,6 +3,8 @@ import { Link, NavLink, Outlet, useParams } from "react-router-dom"
 import { HostVans } from "../../../types/Van";
 import '../../../css/components/HostVanDetail.css'
 
+
+
 export function HostVanDetail() {
 
     const { id } = useParams();
@@ -46,10 +48,10 @@ export function HostVanDetail() {
                         </div>
                         <nav className="host-van-detail-nav">
                             <NavLink to="." end style={({isActive}) => isActive ? activeStyle : undefined}>Details</NavLink>
-                            <NavLink to={`/host/vans/${id}/pricing`} style={({isActive}) => isActive ? activeStyle : undefined}>Pricing</NavLink>
-                            <NavLink to={`/host/vans/${id}/photos`} style={({isActive}) => isActive ? activeStyle : undefined}>Photos</NavLink>
+                            <NavLink to={`pricing`} style={({isActive}) => isActive ? activeStyle : undefined}>Pricing</NavLink>
+                            <NavLink to={`photos`} style={({isActive}) => isActive ? activeStyle : undefined}>Photos</NavLink>
                         </nav>
-                        <Outlet/>
+                        <Outlet context={{hostVan}}/>
                     </div>
                 </section>
 
