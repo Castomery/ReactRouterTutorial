@@ -14,6 +14,7 @@ import { HostVanDetail } from './components/Host/HostVans/HostVanDetail.js'
 import { HostVanPricing } from './components/Host/HostVans/HostVanPhotos.js'
 import { HostVanPhotos } from './components/Host/HostVans/HostVanPricing.js'
 import { HostVanInfo } from './components/Host/HostVans/HostVanInfo.js'
+import { NotFound } from './components/NotFound.js'
 
 function App() {
 
@@ -37,6 +38,8 @@ function App() {
             </Route>
             <Route path='reviews' element={<Reviews />} />
           </Route>
+
+          <Route path='*' element={<NotFound/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
