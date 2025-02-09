@@ -66,6 +66,12 @@ a {
     background-color: #161616;
 }
 
+.filters-container{
+    padding-inline: 23px;
+    display: flex;
+    gap: 5px;
+}
+
 .van-type.clear-filters {
     margin-left: -20px;
     height: 34px;
