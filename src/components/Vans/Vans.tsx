@@ -2,29 +2,41 @@ import { useEffect, useState } from "react"
 import '../../css/components/Vans.css'
 import { Link, useSearchParams } from "react-router-dom";
 import { Van } from "../../types/Van";
+import { getVans } from "../../api/api";
 
 
 
 export function Vans() {
 
     const [vans, setVans] = useState<Van[]>([]);
-
     const [searchParams, setSearchParams] = useSearchParams();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<any>(null);
+
     const typeFilter = searchParams.get('type');
 
     useEffect(() => {
-        fetch("/api/vans")
-            .then((res) => res.json())
-            .then((data) => setVans(data.vans))
-            .catch((err) => console.log("Error fetching vans:", err));
+        async function loadVans() {
+            setLoading(true);
+            try{
+                const data = await getVans();
+                setVans(data);
+            }catch(err){
+                setError(err);
+            }finally{
+                setLoading(false);
+            }
+        }
+
+        loadVans();
     }, []);
 
-    const vansToDisplay = typeFilter ?
+    const vansToDisplay: Van[] = typeFilter ?
         vans.filter(van => van.type.toLowerCase() === typeFilter)
         :
         vans;
 
-    const vanElements = vansToDisplay.map(van => (
+    const vanElements = vansToDisplay.map((van) => (
 
         <section key={van.id} className="van-tile">
             <Link to={van.id} state={{search: `?${searchParams.toString()}`, type: typeFilter}}>
@@ -38,6 +50,14 @@ export function Vans() {
         </section>
 
     ));
+
+    if(loading){
+        return <h1>Loading...</h1>
+    }
+
+    if(error){
+        return <h1>There wan an error: {error.message}</h1>
+    }
 
     return (
         <>
