@@ -1,35 +1,22 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import '../../css/components/Vans.css'
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLoaderData, useSearchParams } from "react-router-dom";
 import { Van } from "../../types/Van";
-import { getVans } from "../../api/api";
+import { getVans } from "../../api/api"; 
 
-
+export function loader(){
+    return getVans();
+}
 
 export function Vans() {
 
-    const [vans, setVans] = useState<Van[]>([]);
     const [searchParams, setSearchParams] = useSearchParams();
-    const [loading, setLoading] = useState(false);
+
     const [error, setError] = useState<any>(null);
+    
+    const vans = useLoaderData() as Van[];
 
     const typeFilter = searchParams.get('type');
-
-    useEffect(() => {
-        async function loadVans() {
-            setLoading(true);
-            try{
-                const data = await getVans();
-                setVans(data);
-            }catch(err){
-                setError(err);
-            }finally{
-                setLoading(false);
-            }
-        }
-
-        loadVans();
-    }, []);
 
     const vansToDisplay: Van[] = typeFilter ?
         vans.filter(van => van.type.toLowerCase() === typeFilter)
@@ -50,10 +37,6 @@ export function Vans() {
         </section>
 
     ));
-
-    if(loading){
-        return <h1>Loading...</h1>
-    }
 
     if(error){
         return <h1>There wan an error: {error.message}</h1>

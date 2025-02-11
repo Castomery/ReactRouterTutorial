@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
+
 import type { HostVans } from "../../../types/Van";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import "../../../css/components/HostVans.css";
+import { getHostVans } from "../../../api/api";
+import { requireAuth } from "../../../utils/auth";
+
+export async function loader(){
+    await requireAuth();
+    return getHostVans();
+}
 
 export function HostVans() {
 
-    const [hostVans, setHostVans] = useState<HostVans[]>([]);
-
-    useEffect(() => {
-        fetch("/api/host/vans")
-            .then((res) => res.json())
-            .then((data) => setHostVans(data.vans))
-            .catch((err) => console.log("Error fetching vans:", err));
-    }, []);
+    const hostVans = useLoaderData() as HostVans[];
 
     const vanElements = hostVans.map(hostVan => (
 
