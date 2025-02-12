@@ -4,8 +4,8 @@ import '../../../css/components/HostVanDetail.css'
 import { getHostVans } from "../../../api/api";
 import { requireAuth } from "../../../utils/auth";
 
-export async function loader({ params }: LoaderFunctionArgs) {
-    await requireAuth();
+export async function loader({ params, request }: LoaderFunctionArgs) {
+    await requireAuth(request);
     return getHostVans(params.id);
 }
 

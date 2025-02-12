@@ -44,6 +44,16 @@
     font-family: "Inter", sans-serif;
 }
 
+.login-form > button:hover {
+    background-color: #f88f44;
+    cursor: pointer;
+}
+
+.login-form > button:disabled {
+    background-color: #aaaaaa;
+    cursor: not-allowed;
+}
+
 .red {
     color:red;
 }

@@ -1,12 +1,12 @@
 
 import type { HostVans } from "../../../types/Van";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import "../../../css/components/HostVans.css";
 import { getHostVans } from "../../../api/api";
 import { requireAuth } from "../../../utils/auth";
 
-export async function loader(){
-    await requireAuth();
+export async function loader({request} : LoaderFunctionArgs){
+    await requireAuth(request);
     return getHostVans();
 }
 
